@@ -25,9 +25,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. Form Handling
+    // 3. Form Handling & Pre-filling
     const contactForm = document.getElementById('srv-contact-form');
+
+    // Function to pre-fill form from URL parameters
+    const prefillForm = () => {
+        if (!contactForm) return;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const fields = ['nombre', 'email', 'telefono', 'establecimiento', 'direccion', 'equipo', 'consulta'];
+
+        fields.forEach(field => {
+            const value = urlParams.get(field);
+            if (value) {
+                const input = contactForm.querySelector(`[name="${field}"]`);
+                if (input) {
+                    input.value = value;
+                }
+            }
+        });
+    };
+
     if (contactForm) {
+        // Run pre-fill on load
+        prefillForm();
+
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
@@ -71,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Apply to sections
+    // Apply to elements
     const animatedElements = document.querySelectorAll('.service-card, .mvv-card, .about-text, .enhanced-values, .value-card, .logo-item');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
