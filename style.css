@@ -497,6 +497,18 @@ blockquote {
     margin-top: 40px;
 }
 
+.info-location {
+    margin-bottom: 30px;
+}
+
+.info-location h4 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
 .info-item {
     display: flex;
     align-items: center;
